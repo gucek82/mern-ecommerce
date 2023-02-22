@@ -10,18 +10,6 @@ const initialState = {
   message: '',
 }
 
-// Get products
-// export const getProducts = createAsyncThunk('products/all', async () => {
-//   try {
-//     const res = await productService.getProducts()
-//     console.log('Slice: ' + res)
-//   } catch (error) {
-//     const message = error.response
-
-//     // return message
-//   }
-// })
-
 // Get ALL products
 export const getProducts = createAsyncThunk(
   'api/products/getAll',
