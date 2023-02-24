@@ -1,39 +1,38 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getProducts } from '../store/features/products/productSlice'
+import { listProducts } from '../store/actions/productActions'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
 function HomeScreen() {
-  const { products, isLoading, isError, message } = useSelector(
-    (state) => state.products
-  )
-
   const dispatch = useDispatch()
 
+  const productList = useSelector((state) => state.productList)
+  const { loading, error, products } = productList
+
   useEffect(() => {
-    return () => {
-      dispatch(getProducts())
-    }
+    dispatch(listProducts())
   }, [dispatch])
 
   return (
     <>
       <h1>Latest Products</h1>
-      {isLoading ? (
+      {loading ? (
         <Loader />
-      ) : isError ? (
-        <Message variant="danger">{message}</Message>
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
       ) : (
-        <Row>
-          {products.map((product, index) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
-            </Col>
-          ))}
-        </Row>
+        <>
+          <Row>
+            {products.map((product) => (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+        </>
       )}
     </>
   )
