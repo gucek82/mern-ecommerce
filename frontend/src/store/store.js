@@ -8,11 +8,21 @@ import {
   productDeleteReducer,
 } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
+import {
+  userDetailsReducer,
+  userLoginReducer,
+  userRegisterReducer,
+  userUdateProfileReducer,
+} from './reducers/userReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   productDelete: productDeleteReducer,
+  userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
+  userUpdateProfile: userUdateProfileReducer,
   cart: cartReducer,
 })
 
@@ -33,7 +43,7 @@ const initialState = {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
   },
-  // userLogin: { userInfo: userInfoFromStorage },
+  userLogin: { userInfo: userInfoFromStorage },
 }
 
 const middleware = [thunk]
