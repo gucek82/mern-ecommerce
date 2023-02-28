@@ -20,7 +20,6 @@ const LoginScreen = () => {
   const { loading, error, userInfo } = userLogin
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
-  console.log(redirect)
 
   useEffect(() => {
     if (userInfo) {
@@ -47,7 +46,7 @@ const LoginScreen = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}></Form.Control>
         </Form.Group>
-        <Form.Group controlId="email">
+        <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"

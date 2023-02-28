@@ -9,11 +9,20 @@ import {
 } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
 import {
+  userDeleteReducer,
   userDetailsReducer,
+  userListReducer,
   userLoginReducer,
   userRegisterReducer,
   userUdateProfileReducer,
+  userUpdateReducer,
 } from './reducers/userReducers'
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderListMyReducer,
+  orderPayReducer,
+} from './reducers/orderReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -23,6 +32,13 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUdateProfileReducer,
+  userList: userListReducer,
+  userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
+  orderListMy: orderListMyReducer,
   cart: cartReducer,
 })
 
@@ -47,10 +63,12 @@ const initialState = {
 }
 
 const middleware = [thunk]
-composeWithDevTools(applyMiddleware(...middleware))
+
+// const midd = composeWithDevTools(applyMiddleware(...middleware))
 const store = configureStore({
   reducer,
   initialState,
+  middleware: [thunk],
 })
 
 export default store
