@@ -1,11 +1,12 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { logout } from '../store/actions/userActions'
+import SearchBox from './SearchBox'
 
-function Header() {
+function Header({ history }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -23,8 +24,10 @@ function Header() {
           <LinkContainer to="/">
             <Navbar.Brand>Proshop</Navbar.Brand>
           </LinkContainer>
-
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+          <SearchBox />
+
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <LinkContainer to="/cart">
